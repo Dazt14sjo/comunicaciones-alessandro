@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crear cuenta | Comunicaciones Alessandro</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e9f6ff, #ffffff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .registro-container {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(18, 59, 93, 0.15);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo h1 {
+            color: #123b5d;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .logo p {
+            color: #6b7c8a;
+            font-size: 14px;
+        }
+
+        h2 {
+            color: #123b5d;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            color: #263746;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dce8ef;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #36a9e1;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #0878b9;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #123b5d;
+        }
+
+        .login {
+            text-align: center;
+            margin-top: 20px;
+            color: #6b7c8a;
+            font-size: 14px;
+        }
+
+        .login a {
+            color: #0878b9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="registro-container">
+
+        <div class="logo">
+            <h1>Comunicaciones Alessandro</h1>
+            <p>Tecnología a tu alcance</p>
+        </div>
+
+        <h2>Crear cuenta</h2>
+
+        <form id="registroForm">
+
+            <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Ingresa tu nombre"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo electrónico</label>
+
+                <input
+                    type="email"
+                    id="correo"
+                    placeholder="Ingresa tu correo"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="contraseña">Contraseña</label>
+
+                <input
+                    type="password"
+                    id="contraseña"
+                    placeholder="Mínimo 6 caracteres"
+                    minlength="6"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="confirmarContraseña">
+                    Confirmar contraseña
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmarContraseña"
+                    placeholder="Repite tu contraseña"
+                    minlength="6"
+                    required
+                >
+            </div>
+
+            <button type="submit">
+                Crear cuenta
+            </button>
+
+        </form>
+
+        <div class="login">
+            ¿Ya tienes una cuenta?
+            <a href="login.html">Iniciar sesión</a>
+        </div>
+
+    </div>
+
+    <script type="module" src="registro.js"></script>
+
+</body>
+</html>

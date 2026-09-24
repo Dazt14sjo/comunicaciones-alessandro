@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicaciones Alessandro | Administración</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <script type="module">
+    import { supabase } from "./config.js";
+
+    async function verificarAdministrador() {
+        try {
+            // Verificar si existe una sesión
+            const { data: { user }, error: errorAuth } =
+                await supabase.auth.getUser();
+
+            if (errorAuth || !user) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            // Buscar al usuario en nuestra tabla
+            const { data: usuario, error: errorUsuario } = await supabase
+                .from("usuarios")
+                .select("id, nombre, correo, id_rol")
+                .eq("id_auth", user.id)
+                .single();
+
+            if (errorUsuario) {
+                throw errorUsuario;
+            }
+
+            // Verificar que sea Administrador
+            if (usuario.id_rol !== 1) {
+                alert("Acceso denegado. Solo los administradores pueden acceder.");
+                window.location.href = "index.html";
+                return;
+            }
+
+            console.log("Acceso autorizado:", usuario.nombre);
+
+        } catch (error) {
+            console.error("Error al verificar permisos:", error);
+            alert("No se pudo verificar tu autorización.");
+            window.location.href = "index.html";
+        }
+    }
+
+    verificarAdministrador();
+</script>
+    
+    <header class="navbar">
+        <div class="logo">
+            <span>CA</span>
+            <div>
+                <h1>Comunicaciones Alessandro</h1>
+                <small>Panel de Administración</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="index.html">Tienda</a>
+            <a href="admin.html" class="active">Administración</a>
+        </nav>
+    </header>
+
+    <main class="admin-main">
+
+        <section class="admin-header">
+            <div>
+                <span class="section-tag">ADMINISTRACIÓN</span>
+                <h2>Panel de control</h2>
+                <p>Gestiona y supervisa los pedidos de la tienda.</p>
+            </div>
+
+            <div class="admin-date">
+                <span>Estado del sistema</span>
+                <strong>● Operativo</strong>
+            </div>
+        </section>
+
+        <!-- ESTADÍSTICAS -->
+        <section class="stats-grid">
+
+            <article class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div>
+                    <span>Total de pedidos</span>
+                    <strong>24</strong>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon">⏳</div>
+                <div>
+                    <span>Pendientes</span>
+                    <strong>6</strong>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon">🚚</div>
+                <div>
+                    <span>En camino</span>
+                    <strong>5</strong>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon">✓</div>
+                <div>
+                    <span>Entregados</span>
+                    <strong>13</strong>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- TABLA DE PEDIDOS -->
+        <section class="orders-section">
+
+            <div class="section-heading">
+                <span class="section-tag">GESTIÓN</span>
+                <h2>Control de pedidos</h2>
+                <p>Consulta y actualiza el estado de los pedidos.</p>
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Pedido</th>
+                            <th>Cliente</th>
+                            <th>Productos</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="orders-table-body">
+
+    <!-- Los pedidos de Supabase se cargarán aquí -->
+
+</tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div>
+            <strong>Comunicaciones Alessandro</strong>
+            <p>Panel de administración.</p>
+        </div>
+
+        <p>© 2026 Comunicaciones Alessandro</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="module" src="admin.js"></script>
+
+</body>
+</html>
