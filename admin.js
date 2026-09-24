@@ -265,3 +265,27 @@ window.anularPedido = anularPedido;
 // ==========================================
 
 cargarPedidos();
+// ==========================================
+// ACTUALIZACIÓN EN TIEMPO REAL
+// ==========================================
+
+supabase
+    .channel("pedidos-tiempo-real")
+    .on(
+        "postgres_changes",
+        {
+            event: "INSERT",
+            schema: "public",
+            table: "pedidos"
+        },
+        (payload) => {
+
+            console.log(
+                "Nuevo pedido recibido en tiempo real:",
+                payload.new
+            );
+
+            cargarPedidos();
+        }
+    )
+    .subscribe();
