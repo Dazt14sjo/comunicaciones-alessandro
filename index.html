@@ -22,7 +22,7 @@
             <a href="index.html" class="active">Inicio</a>
             <a href="#productos">Productos</a>
             <a href="#resenas">Reseñas</a>
-            <a href="admin.html">Administración</a>
+            <a href="#" onclick="requestAdminAccess(event)">Administración</a>
         </nav>
 
         <button class="cart-button" onclick="scrollToCart()">
@@ -216,12 +216,9 @@
                         <strong id="cart-total">S/ 0.00</strong>
                     </div>
 
-                    <button
-    class="checkout-button"
-    type="button"
-    onclick="registrarPedido()">
-    Realizar pedido
-</button>
+                    <button class="checkout-button">
+                        Realizar pedido
+                    </button>
                 </div>
 
             </div>
@@ -236,54 +233,57 @@
                 <p>Conoce la experiencia de quienes compraron con nosotros.</p>
             </div>
 
-            <<div class="review-form-container">
+            <div class="reviews-grid">
 
-    <h3>Deja tu reseña</h3>
+                <article class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>
+                        “Los audífonos tienen muy buena calidad
+                        y llegaron rápidamente.”
+                    </p>
 
-    <form id="reviewForm">
+                    <div class="review-user">
+                        <div class="avatar">JM</div>
+                        <div>
+                            <strong>Juan M.</strong>
+                            <small>Cliente verificado</small>
+                        </div>
+                    </div>
+                </article>
 
-        <div class="review-form-group">
-            <label for="reviewRating">
-                Calificación
-            </label>
+                <article class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>
+                        “El cargador funciona perfectamente.
+                        Muy buena atención.”
+                    </p>
 
-            <select id="reviewRating" required>
-                <option value="">Selecciona una calificación</option>
-                <option value="5">★★★★★ — Excelente</option>
-                <option value="4">★★★★☆ — Muy bueno</option>
-                <option value="3">★★★☆☆ — Bueno</option>
-                <option value="2">★★☆☆☆ — Regular</option>
-                <option value="1">★☆☆☆☆ — Malo</option>
-            </select>
-        </div>
+                    <div class="review-user">
+                        <div class="avatar">LP</div>
+                        <div>
+                            <strong>Lucía P.</strong>
+                            <small>Cliente verificado</small>
+                        </div>
+                    </div>
+                </article>
 
-        <div class="review-form-group">
+                <article class="review-card">
+                    <div class="stars">★★★★☆</div>
+                    <p>
+                        “Buen producto y precio. Volvería
+                        a comprar.”
+                    </p>
 
-            <label for="reviewComment">
-                Tu comentario
-            </label>
+                    <div class="review-user">
+                        <div class="avatar">CR</div>
+                        <div>
+                            <strong>Carlos R.</strong>
+                            <small>Cliente verificado</small>
+                        </div>
+                    </div>
+                </article>
 
-            <textarea
-                id="reviewComment"
-                rows="4"
-                placeholder="Cuéntanos tu experiencia..."
-                required></textarea>
-
-        </div>
-
-        <button type="submit" class="primary-button">
-            Publicar reseña
-        </button>
-
-    </form>
-
-</div>
-
-<div class="reviews-grid" id="reviews-container">
-
-    <!-- Las reseñas de Supabase aparecerán aquí -->
-
-</div>
+            </div>
         </section>
 
     </main>
@@ -298,8 +298,8 @@
     </footer>
 
     <script src="script.js"></script>
-    <script type="module" src="checkout.js"></script>
-    <script type="module" src="reviews.js"></script>
+
+    <script type="module" src="proteccion.js"></script>
 
 </body>
 </html>
